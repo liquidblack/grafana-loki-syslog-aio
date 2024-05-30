@@ -105,9 +105,10 @@ services:
     #- ./config/prometheus.yml:/etc/prometheus/prometheus.yml:ro 
     - /var/lib/docker/volumes/prometheus/_data:/etc/prometheus
   promtail:
-    command: -config.file=/etc/promtail/promtail-config.yml
+    #command: -config.file=/etc/promtail/promtail-config.yml
+    command: -config.file=/etc/promtail/promtail.conf
     container_name: promtail
-    image: grafana/promtail:2.3.0
+    image: grafana/promtail:latest
     networks:
       loki: null
     ports:
@@ -119,7 +120,8 @@ services:
       target: 9080
     restart: always
     volumes:
-    - ./config/promtail-config.yml:/etc/promtail/promtail-config.yml:ro
+    # - ./config/promtail-config.yml:/etc/promtail/promtail-config.yml:ro
+    - /var/lib/docker/volumes/promtail/_data:/etc/promtail
   syslog-ng:
     command: -edv
     container_name: syslog-ng
