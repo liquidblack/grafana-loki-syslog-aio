@@ -48,7 +48,8 @@ services:
       target: 3100
     restart: always
     volumes:
-    - ./config/loki-config-s3.yml:/etc/loki/loki-config.yml:ro
+    # - ./config/loki-config-s3.yml:/etc/loki/loki-config.yml:ro
+    - /var/lib/docker/volumes/loki/_data:/etc/loki
   minio:
     command: -c 'mkdir -p /data/loki && /usr/bin/docker-entrypoint.sh minio server /data'
     container_name: minio
