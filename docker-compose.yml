@@ -137,5 +137,5 @@ services:
       target: 601
     restart: always
     volumes:
-    - ./config/syslog-ng.conf:/etc/syslog-ng/syslog-ng.conf:ro
+    - /var/lib/docker/volumes/syslog-ng/_data:/etc/syslog-ng
 version: '3.3'
